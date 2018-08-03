@@ -4,12 +4,16 @@
 
 #include <cover_to_display.hpp>
 
+#include <action.hpp>
+
 int main (int argc, char* argv[])
 {
 	VideoCapture cap;
 
 	if (!cap.open ("http://172.16.0.165:8080/video"))
         return 0;
+
+	stack < action > backtrack;
 
 	for (;;) {
 

@@ -6,12 +6,14 @@
 #include <decode_object.hpp>
 #include <vector>
 
+#include <functional>
+
 using namespace cv;
 using namespace std;
 using namespace zbar;
 
 // Find and decode barcodes and QR codes
-void decode (Mat &im, vector<decodedObject>&decodedObjects, void (*callback)(const decodedObject&))
+void decode (Mat &im, vector<decodedObject>&decodedObjects, function <void(decodedObject&)> callback)
 {
 
 	// Create zbar scanner
@@ -45,6 +47,6 @@ void decode (Mat &im, vector<decodedObject>&decodedObjects, void (*callback)(con
 
 		decodedObjects.push_back(obj);
 		
-		(*callback) (obj);
+		(callback) (obj);
 	}
 }
